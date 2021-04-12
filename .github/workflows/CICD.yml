@@ -9,10 +9,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Build
       run: |
         npm install
-        npm run deploy
+        npm run build
+    - name: Firebase Deploy
+      run: |
+        sudo npm install -g firebase-tools
+        firebase deploy --token 1//0hixC7T1wsZ0sCgYIARAAGBESNwF-L9IrSGt9H6yme814j4c4E4n_aC7TdabgVzIIn8fecCsmk7zxF-0ywvXrtBJulpKAj1G-T0M
