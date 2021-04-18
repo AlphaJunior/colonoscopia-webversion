@@ -1,16 +1,16 @@
 import firebase from 'firebase';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDhEfsWwVUTqXO-ILIL3dFNsTP7ry6qUrM",
-    authDomain: "colonoscopia-webversion.firebaseapp.com",
-    databaseURL: "https://colonoscopia-webversion-default-rtdb.firebaseio.com",
-    projectId: "colonoscopia-webversion",
-    storageBucket: "colonoscopia-webversion.appspot.com",
-    messagingSenderId: "139173310007",
-    appId: "1:139173310007:web:85637785772e5f27b219b2",
-    measurementId: "G-929YGJW244"
-  };
+  apiKey: "AIzaSyC_9aievOBXES7_hpv3jC95u4n_67hiYak",
+  authDomain: "alphacolonoscopia.firebaseapp.com",
+  projectId: "alphacolonoscopia",
+  storageBucket: "alphacolonoscopia.appspot.com",
+  messagingSenderId: "559926114661",
+  appId: "1:559926114661:web:df993c863f5154c673098c",
+  measurementId: "G-533FW1MXQL"
+};
 
 firebase.initializeApp(firebaseConfig);
 export default firebase;
