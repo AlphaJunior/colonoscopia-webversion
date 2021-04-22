@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Responsive,ResponsiveProvider } from '../contexts/responsiveContext'
 import {
   TheContent,
   TheSidebar,
@@ -8,7 +9,10 @@ import {
 
 const TheLayout = () => {
 
+ const responsive = useContext(Responsive);
+
   return (
+    <ResponsiveProvider {...responsive}>
     <div className="c-app c-default-layout">
       <TheSidebar/>
       <div className="c-wrapper">
@@ -19,6 +23,7 @@ const TheLayout = () => {
         <TheFooter/>
       </div>
     </div>
+    </ResponsiveProvider>
   )
 }
 

@@ -1,6 +1,12 @@
-import React from 'react'
+import React,{useState, useContext} from 'react'
+import Firebase from '../services/firebase/firebase'
+import { Redirect } from 'react-router-dom'
+import {Auth} from '../contexts/authContext'
+
+
 import {
   CBadge,
+  CButton,
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
@@ -10,6 +16,26 @@ import {
 import CIcon from '@coreui/icons-react'
 
 const TheHeaderDropdown = () => {
+  const [routeRedirect,setRouteRedirect]= useState(false);
+  const {state,dispatch} = useContext(Auth);
+
+  const handleLogout = async(e)=>{
+    let response = await Firebase.logout().catch((err)=>{
+      console.log(err);
+    }).then(()=>{
+      setRouteRedirect(true);
+      return dispatch({
+        type:"LOGOUT",
+        payload: {}
+      })
+    })
+  }
+
+  const redirect = routeRedirect;
+  if(redirect){
+    return <Redirect to="/"/>
+  }
+
   return (
     <CDropdown
       inNav
@@ -80,9 +106,9 @@ const TheHeaderDropdown = () => {
           <CBadge color="primary" className="mfs-auto">42</CBadge>
         </CDropdownItem>
         <CDropdownItem divider />
-        <CDropdownItem>
+        <CDropdownItem >
           <CIcon name="cil-lock-locked" className="mfe-2" />
-          Lock Account
+          <CButton onClick={handleLogout}>Log out</CButton>
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

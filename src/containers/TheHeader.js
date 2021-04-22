@@ -1,5 +1,4 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, {useContext} from 'react'
 import {
   CHeader,
   CToggler,
@@ -22,10 +21,12 @@ import {
   TheHeaderDropdownNotif,
   TheHeaderDropdownTasks
 }  from './index'
+import { Responsive } from '../contexts/responsiveContext'
 
 const TheHeader = () => {
-  const dispatch = useDispatch()
-  const sidebarShow = useSelector(state => state.sidebarShow)
+  
+  const {state,dispatch} = useContext(Responsive);
+  const sidebarShow = state.sidebarShow;
 
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive'

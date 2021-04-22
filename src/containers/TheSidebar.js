@@ -1,5 +1,6 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useContext} from 'react'
+import { Responsive } from '../contexts/responsiveContext'
+
 import {
   CCreateElement,
   CSidebar,
@@ -18,14 +19,17 @@ import CIcon from '@coreui/icons-react'
 import navigation from './_nav'
 
 const TheSidebar = () => {
-  const dispatch = useDispatch()
-  const show = useSelector(state => state.sidebarShow)
+
+  
+  const {state,dispatch} = useContext(Responsive);
+  const show = state.sidebarShow;
 
   return (
     <CSidebar
       show={show}
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
-    >
+      >
+
       <CSidebarBrand className="d-md-down-none" to="/">
         <CIcon
           className="c-sidebar-brand-full"
