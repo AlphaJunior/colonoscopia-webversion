@@ -33,7 +33,7 @@ class Firebase{
   async signin(email, password){
     const user = await firebase.auth()
     .createUserWithEmailAndPassword(email, password)
-    .catch(err=>{
+    .catch( err=>{
       console.log(err);
       return err;
     })
@@ -42,12 +42,17 @@ class Firebase{
 //logout
  
  async logout(){
-   const logout = await firebase.auth().signOut().catch(err=>{
-     console.log(err);
-     return err;
+   firebase.auth().signOut().catch(err=>{
+     console.error(err.message)
    })
-   return logout;
  }
+
+ isInitialized(){
+   return new Promise(resolve =>{
+     this.auth.onAuthStateChanged(resolve)
+   })
+ }
+
 
  //conecta cm as coleções la necessarias de dados.
  //crud remedio

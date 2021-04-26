@@ -1,22 +1,33 @@
-import React, {useContext} from 'react'
-import { BrowserRouter, Switch } from 'react-router-dom'
-import { AuthProvider, Auth } from '../contexts/authContext';
-import PublicRoutes from './publicRoutes';
-import PrivateRoutes from './privateRoutes';
-
-
+import React from 'react'
+import { BrowserRouter, Switch,Route } from 'react-router-dom'
+import { AuthProvider } from '../contexts/authContext';
+import PrivateRoute from './privateRoute';
+import '../scss/style.scss';
 
 export default function Routes() {
 
-    const user = useContext(Auth); 
+    const loading = (
+        <div className="pt-3 text-center">
+          <div className="sk-spinner sk-spinner-pulse"></div>
+        </div>
+      )
+
+// Containers
+const Login = React.lazy(() => import('../../src/views/pages/login/Login'));
+const TheLayout = React.lazy(() => import('../containers/TheLayout'));
+
 
     return (
         <BrowserRouter>
-            <AuthProvider>
-                <Switch>
-                    {user===null ? <PrivateRoutes/> : <PublicRoutes/>}    
-                </Switch>
-            </AuthProvider>
-        </BrowserRouter>
-    );
+            <React.Suspense fallback={loading}>
+                <AuthProvider>
+                        <Switch>
+                            {console.log("chega aqui")}
+                            <PrivateRoute path="/dashboard" component={TheLayout}/>
+                            <Route exact path="/login" name="Login" render={props => <Login {...props}/>} />
+                        </Switch>
+                </AuthProvider>
+            </React.Suspense>
+        </BrowserRouter>          
+    ) 
 }

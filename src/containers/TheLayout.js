@@ -14,9 +14,9 @@ const TheLayout = () => {
   return (
     <ResponsiveProvider {...responsive}>
     <div className="c-app c-default-layout">
-      <TheSidebar/>
+      <TheSidebar />
       <div className="c-wrapper">
-        <TheHeader/>
+        <TheHeader />
         <div className="c-body">
           <TheContent/>
         </div>

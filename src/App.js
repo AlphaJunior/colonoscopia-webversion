@@ -4,7 +4,6 @@ import Routes from './routes/index.js';
 
 // Containers
 //const TheLayout = React.lazy(() => import('./containers/TheLayout'));
-
 // Pages
 //const Login = React.lazy(() => import('./views/pages/login/Login'));
 //const Register = React.lazy(() => import('./views/pages/register/Register'));
@@ -22,7 +21,6 @@ class App extends Component {
     
       
        /*
-        
         <React.Fragment>
           <React.Suspense fallback={loading}>
             <Switch>

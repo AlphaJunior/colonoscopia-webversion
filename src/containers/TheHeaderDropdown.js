@@ -1,9 +1,4 @@
-import React,{useState, useContext} from 'react'
-import Firebase from '../services/firebase/firebase'
-import { Redirect } from 'react-router-dom'
-import {Auth} from '../contexts/authContext'
-
-
+import React from 'react'
 import {
   CBadge,
   CButton,
@@ -14,27 +9,17 @@ import {
   CImg
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { useAuth } from '../contexts/authContext'
 
 const TheHeaderDropdown = () => {
-  const [routeRedirect,setRouteRedirect]= useState(false);
-  const {state,dispatch} = useContext(Auth);
 
-  const handleLogout = async(e)=>{
-    let response = await Firebase.logout().catch((err)=>{
-      console.log(err);
-    }).then(()=>{
-      setRouteRedirect(true);
-      return dispatch({
-        type:"LOGOUT",
-        payload: {}
-      })
-    })
-  }
+const { currentUser, handleLogout} = useAuth();
 
-  const redirect = routeRedirect;
-  if(redirect){
-    return <Redirect to="/"/>
-  }
+async function submitLogout(e){
+  e.preventDefault();
+  await handleLogout();
+  console.log('sass');
+}
 
   return (
     <CDropdown
@@ -50,6 +35,7 @@ const TheHeaderDropdown = () => {
             alt="admin@bootstrapmaster.com"
           />
         </div>
+        
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem
@@ -108,7 +94,7 @@ const TheHeaderDropdown = () => {
         <CDropdownItem divider />
         <CDropdownItem >
           <CIcon name="cil-lock-locked" className="mfe-2" />
-          <CButton onClick={handleLogout}>Log out</CButton>
+          <CButton onClick={submitLogout} >Log out</CButton>
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

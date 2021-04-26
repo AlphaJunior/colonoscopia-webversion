@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { Redirect } from 'react-router-dom'
-import Firebase from '../../../services/firebase/firebase'
+import React, { useState } from 'react'
+import {useHistory} from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -16,31 +15,25 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import {Auth} from '../../../contexts/authContext'
+import { useAuth } from '../../../contexts/authContext'
 
 const Login = () => {
-  
-  const [email,setEmail]= useState("");
-  const [password,setPassword]= useState("");
-  const [routeRedirect,setRouteRedirect]= useState(false);
-  const {state,dispatch} = useContext(Auth);
+  const [password, setpassword] = useState("")
+  const [email, setemail] = useState("")
+  const [loading, setLoading] = useState(false)
+  const {handleLogin} = useAuth()
+  const history = useHistory()
 
-  const handleLogin = async(e)=>{
-    let response = await Firebase.login(email,password)
-    if(response.hasOwnProperty("message")){
-      console.log(response.message);
+  async function handleSubmit(e){
+    e.preventDefault()
+    try {
+      setLoading(true)
+      await handleLogin(email,password);
+      history.push("/dashboard");
+    } catch (error) {
+      alert(error.message);
     }
-    else{
-      setRouteRedirect(true);
-      return dispatch({
-        type:"LOGIN",
-        payload: response.user
-      })
-    }
-  }
-  const redirect = routeRedirect;
-  if(redirect){
-    return <Redirect to="/"/>
+    setLoading(false)
   }
 
   return (
@@ -51,7 +44,7 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm  onSubmit={handleSubmit}>
                     <h1>Login</h1>
                     <p className="text-muted">Entre suas credenciais para logar na sua conta</p>
                     <CInputGroup className="mb-3">
@@ -60,7 +53,7 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Email" autoComplete="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                      <CInput type="text" name="email" onChange={(e)=>setemail(e.target.value)} placeholder="Email" autoComplete="email" value={email} />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
@@ -68,11 +61,11 @@ const Login = () => {
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Senha" value={password} autoComplete="current-password" onChange={(e)=>{setPassword(e.target.value)}}  />
+                      <CInput type="password" name="password" onChange={(e)=>setpassword(e.target.value)} placeholder="Senha" autoComplete="current-password" value={password} />
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4" onClick={handleLogin}>Login</CButton>
+                        <CButton disabled={loading} color="primary" className="px-4" type="submit">Login</CButton>
                       </CCol>
                     </CRow>
                   </CForm>
