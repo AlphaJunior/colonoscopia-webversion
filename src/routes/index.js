@@ -15,16 +15,15 @@ export default function Routes() {
 // Containers
 const Login = React.lazy(() => import('../../src/views/pages/login/Login'));
 const TheLayout = React.lazy(() => import('../containers/TheLayout'));
-
+const CoreUIIcons = React.lazy(() => import('../views/icons/coreui-icons/CoreUIIcons'));
 
     return (
         <BrowserRouter>
             <React.Suspense fallback={loading}>
                 <AuthProvider>
                         <Switch>
-                            {console.log("chega aqui")}
-                            <PrivateRoute path="/dashboard" component={TheLayout}/>
-                            <Route exact path="/login" name="Login" render={props => <Login {...props}/>} />
+                            <PrivateRoute path="/home" component={TheLayout}/>
+                            <Route exact path="/" name="Login" render={props => <Login {...props}/>} />
                         </Switch>
                 </AuthProvider>
             </React.Suspense>
