@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyC_9aievOBXES7_hpv3jC95u4n_67hiYak",
@@ -7,9 +7,14 @@ const firebaseConfig = {
   storageBucket: "alphacolonoscopia.appspot.com",
   messagingSenderId: "559926114661",
   appId: "1:559926114661:web:df993c863f5154c673098c",
-  measurementId: "G-533FW1MXQL"
+  measurementId: "G-533FW1MXQL",
 };
+const app = firebase.initializeApp(firebaseConfig);
 
+export const auth = app.auth();
+export const firestore = firebase.firestore();
+
+/*
 class Firebase{
   constructor(){
     firebase.initializeApp(firebaseConfig);
@@ -62,3 +67,5 @@ class Firebase{
 
 
 export default new Firebase();
+
+*/
