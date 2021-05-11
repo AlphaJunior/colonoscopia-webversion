@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
 import {
   CButton,
   CDropdown,
@@ -13,10 +14,17 @@ import { useAuth } from '../contexts/authContext'
 const TheHeaderDropdown = () => {
 
 const { currentUser, handleLogout} = useAuth();
+const history = useHistory();
 
 async function submitLogout(e){
   e.preventDefault();
   await handleLogout();
+  console.log('sass');
+}
+
+async function navToRegister(e){
+  e.preventDefault();
+  history.push("/register");
   console.log('sass');
 }
 
@@ -49,15 +57,8 @@ console.log(currentUser.email)
           <strong>Configurações</strong>
         </CDropdownItem>
         <CDropdownItem>
-          <CIcon name="cil-user" className="mfe-2" />Perfil
-        </CDropdownItem>
-        <CDropdownItem>
-          <CIcon name="cil-settings" className="mfe-2" />
-          Configuração
-        </CDropdownItem>
-        <CDropdownItem>
           <CIcon name="cil-user-follow" className="mfe-2" />
-          Registrar usuarios
+          <CButton onClick={navToRegister} >Registrar administradores</CButton>
         </CDropdownItem>
         <CDropdownItem divider />
         <CDropdownItem >

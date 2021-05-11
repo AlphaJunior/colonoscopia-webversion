@@ -14,60 +14,10 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
-import MainChartExample from '../charts/MainChartExample.js'
-
-const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
-const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
-
-const Dashboard = () => {
+const Periodics = () => {
   return (
-    <>
-      <CCard>
-        <CCardBody>
-          <CRow>
-            <CCol sm="5">
-              <h4 id="traffic" className="card-title mb-0">Uso da aplicacao</h4>
-              <div className="small text-muted">Maio 2021</div>
-            </CCol>
-            <CCol sm="7" className="d-none d-md-block">
-            </CCol>
-          </CRow>
-          <MainChartExample style={{height: '300px', marginTop: '40px'}}/>
-        </CCardBody>
-        <CCardFooter>
-          <CRow className="text-center">
-            <CCol md sm="12" className="mb-sm-2 mb-0">
-              <strong>100 usuarios </strong>
-              <CProgress
-                className="progress-xs mt-2"
-                precision={1}
-                color="success"
-                value={40}
-              />
-            </CCol>
-            <CCol md sm="12" className="mb-sm-2 mb-0">
-              <strong>Atendimentos (30%)</strong>
-              <CProgress
-                className="progress-xs mt-2"
-                precision={1}
-                color="warning"
-                value={40}
-              />
-            </CCol>
-            <CCol md sm="12" className="mb-sm-2 mb-0">
-              <strong>23 cadastros (30%)</strong>
-              <CProgress
-                className="progress-xs mt-2"
-                precision={1}
-                color="danger"
-                value={40}
-              />
-            </CCol>
-          </CRow>
-        </CCardFooter>
-      </CCard>
 
-      <CRow>
+<CRow>
         <CCol>
           <CCard>
             <CCardHeader>
@@ -82,6 +32,7 @@ const Dashboard = () => {
                     <th>Usuario</th>
                     <th>Avaliacao</th>
                     <th>Descricao</th>
+                    <th>Ler mais</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -101,6 +52,9 @@ const Dashboard = () => {
                     </td>
                     <td>
                       <div className="small text-muted">Pouco intuitivo...</div>
+                    </td>
+                    <td>
+                      <div className="small text-muted">+</div>
                     </td>
                   </tr>
                   <tr>
@@ -122,6 +76,9 @@ const Dashboard = () => {
                     <td>
                       <div className="small text-muted">PESSIMO</div>
                     </td>
+                    <td>
+                      <div className="small text-muted">+</div>
+                    </td>
                   </tr>
                   <tr>
                     <td className="text-center">
@@ -139,6 +96,9 @@ const Dashboard = () => {
                     </td>
                     <td>
                       <div className="small text-muted">Me senti muito acolhida...</div>
+                    </td>
+                    <td>
+                      <div className="small text-muted">+</div>
                     </td>
                   </tr>
                   <tr>
@@ -158,6 +118,9 @@ const Dashboard = () => {
                     <td>
                       <div className="small text-muted">ADOREI A IDEIA DA...</div>
                     </td>
+                    <td>
+                      <div className="small text-muted">+</div>
+                    </td>
                   </tr>
                   <tr>
                     <td className="text-center">
@@ -175,6 +138,9 @@ const Dashboard = () => {
                     </td>
                     <td>
                       <div className="small text-muted">Muito texto pequeno pra ler</div>
+                    </td>
+                    <td>
+                      <div className="small text-muted">+</div>
                     </td>
                   </tr>
                   <tr>
@@ -194,6 +160,9 @@ const Dashboard = () => {
                     <td>
                       <div className="small text-muted">Não rodou no meu telefone dir...</div>
                     </td>
+                    <td>
+                      <div className="small text-muted">+</div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -202,8 +171,6 @@ const Dashboard = () => {
           </CCard>
         </CCol>
       </CRow>
-    </>
-  )
-}
-
-export default Dashboard
+  );
+};
+export default Periodics

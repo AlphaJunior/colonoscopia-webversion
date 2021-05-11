@@ -39,7 +39,7 @@ const ButtonGroups = React.lazy(() =>
   import("./views/buttons/button-groups/ButtonGroups")
 );
 const Buttons = React.lazy(() => import("./views/buttons/buttons/Buttons"));
-const Charts = React.lazy(() => import("./views/charts/Charts"));
+const Graficos = React.lazy(() => import("./views/charts/Charts"));
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const CoreUIIcons = React.lazy(() =>
   import("./views/icons/coreui-icons/CoreUIIcons")
@@ -58,11 +58,20 @@ const Users = React.lazy(() => import("./views/users/Users"));
 const User = React.lazy(() => import("./views/users/User"));
 //novas rotas
 const Medicines = React.lazy(() => import("./views/pages/Medicines/Medicines"));
+const Register = React.lazy(() => import("./views/pages/register/Register"));
+const Questions = React.lazy(() => import("./views/pages/Questions/Questions"));
+const Menus = React.lazy(() => import("./views/pages/Menus/Menus"));
+const Periodics = React.lazy(() => import("./views/pages/Periodics/Periodics"));
 
 const routes = [
   { path: "/medicines", name: "Remedios", component: Medicines },
+  { path: "/register", name: "Registrar", component: Register },
+  { path: "/menus", name: "Pratos e Refeicoes", component: Menus },
+  { path: "/questions", name: "Perguntas e Dúvidas", component: Questions },
+  { path: "/periodics", name: "Avaliacoes", component: Periodics },
+
   //rotas antigas
-  { path: "/dashboard", name: "Dashboard", component: Dashboard },
+  { path: "/dashboard", name: "Menu Principal", component: Dashboard },
   { path: "/theme", name: "Theme", component: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", component: Colors },
   { path: "/theme/typography", name: "Typography", component: Typography },
@@ -103,7 +112,7 @@ const routes = [
     component: BrandButtons,
     exact: true,
   },
-  { path: "/charts", name: "Charts", component: Charts, exact: true },
+  { path: "/charts", name: "Graficos", component: Graficos, exact: true },
   { path: "/icons", name: "Icons", component: CoreUIIcons, exact: true },
   {
     path: "/icons/coreui-icons",
