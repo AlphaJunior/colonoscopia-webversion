@@ -10,6 +10,7 @@ import {
   CChartPie} from '@coreui/react-chartjs'
 import { DocsLink } from '../reusable/index'
 
+
 const Charts = () => {
 
   return (
@@ -48,8 +49,12 @@ const Charts = () => {
             datasets={[
               {
                 backgroundColor: [
-                  '#41B883',
-                  '#E46651'                  
+                  '#FF6384',
+                  '#36A2EB'
+                  ],
+                hoverBackgroundColor: [
+                '#FF6384',
+                '#36A2EB'
                 ],
                 data: [65, 35]
               }
